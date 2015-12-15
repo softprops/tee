@@ -13,13 +13,13 @@ rustdoc api documentation can be found [here](https://softprops.github.io/tee)
 The currently unstable/deprecated std library function looks like this
 
 ```rust
-let tee_reader = reader.tee(writer)
+let tee_reader = reader.tee(writer);
 ```
 
 In broadcast this looks like
 
 ```rust
-let tee_reader = tee::Tee::new(reader, writer)
+let tee_reader = tee::TeeReader::new(reader, writer);
 ```
 
 Doug Tangren (softprops) 2015
