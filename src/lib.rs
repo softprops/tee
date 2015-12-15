@@ -1,17 +1,19 @@
-use std::io::{Read,Write, Result};
-
-/// Returns a Tee which can be used as Read whose
-/// reads delegate ready bytes read to the provided reader and write to the provided
-/// writer. This write must complete before the read completes.
-///
-/// Errors reported by the read will be interpreted as Errors for the read
-pub fn tee<R: Read,W: Write>(reader: R, writer: W) -> Tee<R,W>  {
-    Tee { reader: reader, writer: writer }
-}
+use std::io::{Read, Result, Write};
 
 pub struct Tee<R,W> {
     reader: R,
     writer: W
+}
+
+impl<R: Read, W: Write> Tee<R,W> {
+    /// Returns a Tee which can be used as Read whose
+    /// reads delegate ready bytes read to the provided reader and write to the provided
+    /// writer. This write must complete before the read completes.
+    ///
+    /// Errors reported by the read will be interpreted as Errors for the read
+    pub fn new(reader: R, writer: W) -> Tee<R,W>  {
+        Tee { reader: reader, writer: writer }
+    }
 }
 
 impl<R: Read, W: Write> Read for Tee<R,W> {
