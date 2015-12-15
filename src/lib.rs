@@ -1,7 +1,7 @@
 use std::io::{Read,Write, Result};
 
 /// Returns a Tee which can be used as Read whose
-/// reads delegated to the provided reader and write to the provided
+/// reads delegate ready bytes read to the provided reader and write to the provided
 /// writer. This write must complete before the read completes.
 ///
 /// Errors reported by the read will be interpreted as Errors for the read
