@@ -2,7 +2,7 @@
 name = "tee"
 version = "0.1.0"
 authors = ["softprops <d.tangren@gmail.com>"]
-description = "A rustlang adapter for readers which delegate read bytes to a writer"
+description = "An adapter for readers which delegate reads to a writer"
 documentation = "http://softprops.github.io/tee"
 homepage = "https://github.com/softprops/tee"
 repository = "https://github.com/softprops/tee"
