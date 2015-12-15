@@ -25,7 +25,7 @@ The currently unstable/deprecated std library function looks like this
 let tee_reader = reader.tee(writer);
 ```
 
-In broadcast this looks like
+With `tee`, this looks more like
 
 ```rust
 let tee_reader = tee::TeeReader::new(reader, writer);
