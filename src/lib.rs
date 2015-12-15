@@ -26,6 +26,20 @@ impl<R: Read, W: Write> Read for TeeReader<R,W> {
     }
 }
 
-#[test]
-fn it_works() {
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::io::Read;
+
+    #[test]
+    fn tee() {
+        let mut reader = "It's over 9000!".as_bytes();
+        let mut teeout = Vec::new();
+        let mut stdout = Vec::new();
+        {
+            let mut tee = TeeReader::new(&mut reader, &mut teeout);
+            let _ = tee.read_to_end(&mut stdout);
+        }
+        assert_eq!(teeout, stdout);
+    }
 }
