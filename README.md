@@ -1,6 +1,6 @@
 # Tee
 
-[![Build Status](https://travis-ci.org/softprops/tee.svg)](https://travis-ci.org/softprops/tee)
+[![Build Status](https://travis-ci.org/softprops/tee.svg)](https://travis-ci.org/softprops/tee) [![Coverage Status](https://coveralls.io/repos/softprops/tee/badge.svg?branch=master&service=github)](https://coveralls.io/github/softprops/tee?branch=master)
 
 A rustlang adapter for readers which delegate read bytes to a writer, adapted from the standard library's `std::io::Read#tee` which has since been deprecated.
 
