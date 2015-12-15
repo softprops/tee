@@ -1,5 +1,7 @@
 use std::io::{Read, Result, Write};
 
+/// An adapter for readers whose inputs
+/// are written to a tee(1)'d writer
 pub struct TeeReader<R: Read,W: Write> {
     reader: R,
     writer: W
