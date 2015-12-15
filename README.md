@@ -4,6 +4,15 @@
 
 A rustlang adapter for readers which delegate read bytes to a writer, adapted from the standard library's `std::io::Read#tee` which has since been deprecated.
 
+## install
+
+Add the following to your `Cargo.toml` file
+
+```toml
+[dependencies]
+tee = "0.1"
+```
+
 ## api docs
 
 rustdoc api documentation can be found [here](https://softprops.github.io/tee)
