@@ -6,9 +6,6 @@ matrix:
   - rust: nightly
   - rust: beta
   - rust: stable
-os:
-- linux
-- osx
 script:
 - cargo build
 - cargo test
