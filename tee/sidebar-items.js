@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TeeReader","An adapter for readers whose inputs are written to a \"tee\"'d writer"]]});
