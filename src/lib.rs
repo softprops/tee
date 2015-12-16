@@ -1,7 +1,7 @@
 use std::io::{Read, Result, Write};
 
 /// An adapter for readers whose inputs
-/// are written to a tee(1)'d writer
+/// are written to a "tee"'d writer
 pub struct TeeReader<R: Read, W: Write> {
     reader: R,
     writer: W,
@@ -9,10 +9,10 @@ pub struct TeeReader<R: Read, W: Write> {
 
 impl<R: Read, W: Write> TeeReader<R, W> {
     /// Returns a TeeReader which can be used as Read whose
-    /// reads delegate ready bytes read to the provided reader and write to the provided
-    /// writer. This write must complete before the read completes.
+    /// reads delegate bytes read to the provided reader and write to the provided
+    /// writer. The write operation must complete before the read completes.
     ///
-    /// Errors reported by the read will be interpreted as Errors for the read
+    /// Errors reported by the write operation will be interpreted as errors for the read
     pub fn new(reader: R, writer: W) -> TeeReader<R, W> {
         TeeReader {
             reader: reader,
