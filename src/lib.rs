@@ -1,3 +1,21 @@
+//! An adapter for objects implementing `Read` which copies read bytes and writes them to a
+//! provided reader.
+//!
+//! # Example
+//!
+//! ```rust
+//! # extern crate tee;
+//! use std::io::Read;
+//! use tee::TeeExt;
+//! # fn main() {
+//! let reader = "It's over 9000!".as_bytes();
+//! let mut teeout = Vec::new();
+//! let mut stdout = Vec::new();
+//! reader.tee(&mut teeout).read_to_end(&mut stdout).unwrap();
+//! assert_eq!(teeout, stdout);
+//! # }
+//! ```
+
 use std::io::{Read, Result, Write};
 
 /// An adapter for readers whose inputs
