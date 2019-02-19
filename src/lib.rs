@@ -19,6 +19,11 @@ impl<R: Read, W: Write> TeeReader<R, W> {
             writer: writer,
         }
     }
+
+    /// Consumes the `TeeReader`, returning the wrapped reader and writer.
+    pub fn into_inner(self) -> (R, W) {
+        (self.reader, self.writer)
+    }
 }
 
 impl<R: Read, W: Write> Read for TeeReader<R, W> {
