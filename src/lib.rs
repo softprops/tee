@@ -7,6 +7,15 @@ pub struct TeeReader<R: Read, W: Write> {
     writer: W,
 }
 
+/// Returns a TeeReader which can be used as Read whose
+/// reads delegate bytes read to the provided reader and write to the provided
+/// writer. The write operation must complete before the read completes.
+///
+/// Errors reported by the write operation will be interpreted as errors for the read
+pub fn tee<R: Read, W: Write>(reader: R, writer: W) -> TeeReader<R, W> {
+    TeeReader::new(reader, writer)
+}
+
 impl<R: Read, W: Write> TeeReader<R, W> {
     /// Returns a TeeReader which can be used as Read whose
     /// reads delegate bytes read to the provided reader and write to the provided
@@ -28,15 +37,14 @@ impl<R: Read, W: Write> TeeReader<R, W> {
 
 impl<R: Read, W: Write> Read for TeeReader<R, W> {
     fn read(&mut self, buf: &mut [u8]) -> Result<usize> {
-        let n = try!(self.reader.read(buf));
-        try!(self.writer.write_all(&buf[..n]));
+        let n = self.reader.read(buf)?;
+        self.writer.write_all(&buf[..n])?;
         Ok(n)
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::io::Read;
 
     #[test]
@@ -45,7 +53,7 @@ mod tests {
         let mut teeout = Vec::new();
         let mut stdout = Vec::new();
         {
-            let mut tee = TeeReader::new(&mut reader, &mut teeout);
+            let mut tee = super::tee(&mut reader, &mut teeout);
             let _ = tee.read_to_end(&mut stdout);
         }
         assert_eq!(teeout, stdout);
