@@ -37,8 +37,8 @@ impl<R: Read, W: Write> TeeReader<R, W> {
 
 impl<R: Read, W: Write> Read for TeeReader<R, W> {
     fn read(&mut self, buf: &mut [u8]) -> Result<usize> {
-        let n = try!(self.reader.read(buf));
-        try!(self.writer.write_all(&buf[..n]));
+        let n = self.reader.read(buf)?;
+        self.writer.write_all(&buf[..n])?;
         Ok(n)
     }
 }
